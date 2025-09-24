@@ -79,7 +79,7 @@ impl TokioDecoder for ImapClientCodec {
 
                         return Ok(Some(Event::Greeting(grt)));
                     }
-                    Err(GreetingDecodeError::Incomplete) => {
+                    Err(GreetingDecodeError::Incomplete(_)) => {
                         return Ok(None);
                     }
                     Err(GreetingDecodeError::Failed) => {
@@ -128,7 +128,7 @@ impl TokioDecoder for ImapClientCodec {
                                         //
                                         // This should not happen because a line that doesn't end
                                         // with a literal is always "complete" in IMAP.
-                                        ResponseDecodeError::Incomplete => {
+                                        ResponseDecodeError::Incomplete(_) => {
                                             unreachable!();
                                         }
                                         // We found a literal.

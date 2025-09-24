@@ -99,7 +99,7 @@ impl TokioDecoder for ImapServerCodec {
                                     //
                                     // This should not happen because a line that doesn't end
                                     // with a literal is always "complete" in IMAP.
-                                    CommandDecodeError::Incomplete => {
+                                    CommandDecodeError::Incomplete(_) => {
                                         unreachable!();
                                     }
                                     // We found a literal.

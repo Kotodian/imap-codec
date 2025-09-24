@@ -38,7 +38,7 @@ fn main() {
                 buffer = remaining.to_vec();
             }
             // Parser needs more data.
-            Err(GreetingDecodeError::Incomplete) => {
+            Err(GreetingDecodeError::Incomplete(_)) => {
                 // Read more data.
                 read_more(&mut buffer, Role::Server);
             }
